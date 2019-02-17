@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import java.util.Properties;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
@@ -41,7 +42,7 @@ public class DBconfig {
     	
     	factory.setDataSource(getDataSource());
     	factory.setHibernateProperties(hibernateProperties());
-    	factory.setPackagesToScan(new String[] {"com.example.demo.model"});
+    	factory.setPackagesToScan(new String[] {"com.example.demo.modeldao"});
     	return factory;
     }
     private  Properties hibernateProperties() {
@@ -62,4 +63,6 @@ public class DBconfig {
     	return transactionManager;
     	
     }
+    
+    
 }

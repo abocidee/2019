@@ -3,6 +3,8 @@ package com.example.demo.persondao;
 
 import java.util.List;
 
+import javax.persistence.EntityManagerFactory;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.model.Person;
+import com.example.demo.moduledao.Person;
 
 @Repository
 @Transactional
@@ -33,5 +35,9 @@ public class PersonDao {
 		}
 		
 		return session ;
+	}
+	
+	private EntityManagerFactory getFactoryemc() {
+		return getSession().getEntityManagerFactory();
 	}
 }
