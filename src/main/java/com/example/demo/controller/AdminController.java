@@ -8,14 +8,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.model.User;
+import com.example.demo.persondao.UserDao;
 import com.example.demo.repository.UserRespository;
 
 @RestController
 @RequestMapping("/secure/rest")
 public class AdminController {
 	
+	/*@Autowired
+	private UserRespository userRepository;*/
 	@Autowired
-	private UserRespository userRepository;
+	private UserDao userDao;
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
     @PostMapping("/admin/add")
@@ -23,7 +26,7 @@ public class AdminController {
     	String pwd =user.getPassword();
     	String encrytPwd = passwordEncoder.encode(pwd);
     	user.setPassword(encrytPwd);
-    	userRepository.save(user);
+    	userDao.save(user);
 		return "user add successfully";
 	}
 }

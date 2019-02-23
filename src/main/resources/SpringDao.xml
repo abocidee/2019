@@ -15,5 +15,9 @@
     <bean id="jdbcTemplate" class="com.example.JdbcCorporateEventDao">
         <property name="dataSource" ref="dataSource"/>
     </bean>
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+        <property name="persistenceUnitName" value="luecc"/>
+    </bean> 
+
    
 </beans>

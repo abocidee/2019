@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import javax.persistence.EntityManagerFactory;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
