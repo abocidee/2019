@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -37,12 +39,15 @@ public class DBconfig {
     } 
     
     @Bean
+    @Primary
     public LocalSessionFactoryBean sessionFactory() {
     	LocalSessionFactoryBean factory = new LocalSessionFactoryBean();
     	
     	factory.setDataSource(getDataSource());
     	factory.setHibernateProperties(hibernateProperties());
-    	factory.setPackagesToScan(new String[] {"com.example.demo.modeldao"});
+    	factory.setPackagesToScan(new String[] {"com.example.demo.modeldao"
+    			,"com.example.demo.model"
+    	});
     	return factory;
     }
     private  Properties hibernateProperties() {
@@ -54,7 +59,7 @@ public class DBconfig {
     	return properties;
     }
     
-    @Bean
+   /* @Bean
     @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory factory) {
     	HibernateTransactionManager transactionManager = new HibernateTransactionManager();
@@ -62,6 +67,11 @@ public class DBconfig {
     	
     	return transactionManager;
     	
+    }*/
+    
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+    	return new JdbcTemplate(getDataSource());
     }
     
     
