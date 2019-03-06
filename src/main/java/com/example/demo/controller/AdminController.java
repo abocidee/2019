@@ -2,15 +2,16 @@ package com.example.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRespository;
 
 @RestController
-@RequestMapping("/secure/rest")
 public class AdminController {
 	
 	@Autowired
@@ -25,4 +26,10 @@ public class AdminController {
     	userRepository.save(user);
 		return "user add successfully";
 	}
+    
+    @GetMapping(value="/login")
+    public String login(ModelAndView m) {
+    	m.setViewName("login1");
+    	return m.toString();
+    }
 }
